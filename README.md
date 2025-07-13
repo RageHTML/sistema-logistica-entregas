@@ -134,6 +134,7 @@ A aba de **Dashboard** exibe gráficos gerados com base nos dados da base de ped
 Desenvolvido por **[Deyvid Martins]**
 
 [![GitHub](https://img.shields.io/badge/GitHub-Perfil-black?logo=github)](https://github.com/RageHTML)
+📫 Conecte-se comigo no [LinkedIn](https://www.linkedin.com/in/deyvid-martins-545530352/)
 
 ---
 
