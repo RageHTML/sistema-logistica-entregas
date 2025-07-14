@@ -7,18 +7,18 @@ Este projeto é uma aplicação web completa para gerenciamento de pedidos logí
 - **Dashboard** com gráficos utilizando [Recharts](https://recharts.org/)
 
 ---
+## 📝 Changelog
+
+Veja todas as alterações feitas no projeto:
+
+➡️ [CHANGELOG.md](./CHANGELOG.md)
 
 ## ✨ Funcionalidades
 
-- Criar novos pedidos com:
-  - `id_client` (UUID)
-  - `id_product` (UUID)
-  - `quantity`
-  - `address`
-  - `status` (`pendente`, `enviado`, `entregue`)
-  - `hora` (registrada automaticamente)
-- Atualizar status dos pedidos:
+- Novo gerador de pedidos 
+- Atualizar status dos pedidos: (icones 📦,🚚,✔️)
   - `pendente` → `enviado` → `entregue`
+- Obter todos os pedidos
 - Filtrar pedidos por status em abas separadas
 - Remover pedidos (ícone de lixeira)
 - Visualizar estatísticas em um **painel de dashboard**
@@ -35,9 +35,13 @@ Este projeto é uma aplicação web completa para gerenciamento de pedidos logí
 /frontend
   └── src/
       └── components/
+          └── GerarPedidos.jsx
+          └── NavBar.js
+          └── PedidoCard.jsx
+          └── StatusButtons.jsx
       └── pages/
-      └── App.jsx
-      └── index.js
+          └── logistica.js
+          └── dashboard.js
 ```
 
 ---
@@ -134,6 +138,7 @@ A aba de **Dashboard** exibe gráficos gerados com base nos dados da base de ped
 Desenvolvido por **[Deyvid Martins]**
 
 [![GitHub](https://img.shields.io/badge/GitHub-Perfil-black?logo=github)](https://github.com/RageHTML)
+
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-blue?logo=linkedin)](https://www.linkedin.com/in/deyvid-martins-545530352/)
 
 ---
