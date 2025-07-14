@@ -130,6 +130,7 @@ A aba de **Dashboard** exibe gráficos gerados com base nos dados da base de ped
 - [React.js](https://reactjs.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Recharts](https://recharts.org/)
+- [Faker](https://v9.fakerjs.dev/)
 
 ---
 
