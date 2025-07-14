@@ -113,12 +113,12 @@ A aba de **Dashboard** exibe gráficos gerados com base nos dados da base de ped
 
 ## 💡 Possíveis Melhorias
 
-- Autenticação de usuários (admin, entregadores, etc)
+- Dashboard mais Profissional
 - Paginação e busca por pedidos
 - Integração com APIs externas (ex: Mercado Livre)
 - Exportar relatórios em PDF/CSV
 - Notificações em tempo real (WebSocket)
-- Testes automatizados
+- Confirmar Envio de Pedidos e Entregas
 
 ---
 
@@ -132,7 +132,6 @@ A aba de **Dashboard** exibe gráficos gerados com base nos dados da base de ped
 - [Recharts](https://recharts.org/)
 - [Faker](https://v9.fakerjs.dev/)
 
----
 
 ## 👤 Autor
 
