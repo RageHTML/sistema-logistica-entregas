@@ -111,7 +111,7 @@ A aba de **Dashboard** exibe gráficos gerados com base nos dados da base de ped
 
 ---
 
-## 💡 Possíveis Melhorias
+## 💡 Futuras Melhorias
 
 - Dashboard mais Profissional
 - Paginação e busca por pedidos
