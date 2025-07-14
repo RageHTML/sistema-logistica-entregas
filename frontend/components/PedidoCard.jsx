@@ -7,6 +7,7 @@ export default function PedidoCard({ pedido, atualizarStatus, deletarPedido}) {
         id_client,
         address,
         quantity,
+        preco,
         status,
         data_pedido,
         data_envio,
@@ -31,6 +32,7 @@ export default function PedidoCard({ pedido, atualizarStatus, deletarPedido}) {
                 <div><strong>Cliente:</strong> {id_client}</div>
                 <div><strong>Endereço:</strong> {address}</div>
                 <div><strong>Quantidade:</strong> {quantity}</div>
+                <div><strong>Preço:</strong>{" "}{new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"}).format(preco)}</div>
                 <div><strong>Data Pedido:</strong> {new Date(data_pedido).toLocaleString()}</div>
                 {data_envio && <div><strong>Data Entrega:</strong> {new Date(data_entregue).toLocaleString()}</div>}
             </div>

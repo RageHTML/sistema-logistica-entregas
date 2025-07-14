@@ -6,6 +6,7 @@ export default function GeradorPedido({ onCriar }) {
       id_client: faker.string.uuid(),
       id_product: faker.string.uuid(),
       quantity: faker.number.int({ min: 1, max: 5 }),
+      preco: parseInt(faker.commerce.price({ min: 10, max: 500 })),
       address: faker.location.streetAddress(),
       status: "pendente", // ou "enviado", etc.
       data_pedido: new Date().toISOString(),

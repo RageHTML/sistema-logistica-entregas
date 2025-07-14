@@ -37,6 +37,7 @@ class PedidoDB(Base):
     id_client=Column(String, nullable=False, index=True)
     id_product=Column(String, nullable=False, index=True)
     quantity=Column(Integer, nullable=False)
+    preco=Column(Integer, nullable=False)
     address=Column(String, nullable=False)
     status=Column(Enum(StatusPedido, name="statuspedido"), nullable=False, index=True)
     data_pedido=Column(DateTime(timezone=True), server_default=func.now(), nullable=False)
@@ -53,6 +54,7 @@ class Pedido(BaseModel):
     id_client: str
     id_product: str
     quantity: int
+    preco: int
     address: str
     status: StatusPedido
     data_pedido: datetime | None = None
