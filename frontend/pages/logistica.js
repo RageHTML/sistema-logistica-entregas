@@ -1,102 +1,139 @@
 import { useEffect, useState } from "react";
-import NavBar from "../components/NavBar"
-import StatusButtons from "../components/StatusButtons";
-import PedidoCard from "../components/PedidoCard";
-import GeradorPedido from "../components/GerarPedidos";
+import NavBar from "../components/NavBar";
+import OrderCard from "../components/OrderCard";
+import GenerateNewOrder from "../components/GenerateNewOrder";
 
 export default function Home() {
-  const [id_client, setIdClient] = useState("");
-  const [id_product, setIdProduct] = useState("");
-  const [quantity, setQuantity] = useState(1);
-  const [address, setAddress] = useState("");
   const [pedidos, setPedidos] = useState([]);
 
   useEffect(() => {
-    buscarPedidos();
+    GetOrders();
   }, []);
 
-  const buscarPedidos = async () => {
-    const res = await fetch("http://localhost:8000/pedidos");
-    const data = await res.json();
-    setPedidos(data);
+  const GetOrders = async () => {
+    try {
+      const res = await fetch("http://127.0.0.1:8000/api/pedidos/");
+      if (res.ok) {
+        const data = await res.json();
+        setPedidos(data);
+      }
+    } catch (error) {
+      console.error("Erro ao buscar pedidos:", error);
+    }
   };
 
-  const deletarPedido = async (id) => {
-    await fetch(`http://localhost:8000/pedidos/${id}`, {
-      method: "DELETE",
-    });
-    buscarPedidos();
+  const GenerateNewOrderForBD = async (Order) => {
+    try {
+      await fetch("http://127.0.0.1:8000/api/pedidos/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(Order),
+      });
+      GetOrders();
+    } catch (error) {
+      console.error("Erro ao criar pedido:", error);
+    }
   };
 
-  const atualizarStatus = async (id, novoStatus) => {
-    await fetch(`http://localhost:8000/pedidos/${id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ status: novoStatus }),
-    }); 
-    buscarPedidos();
+  const OrderDelete = async (id) => {
+    try {
+      await fetch(`http://127.0.0.1:8000/api/pedidos/${id}/`, {
+        method: "DELETE",
+      });
+      GetOrders();
+    } catch (error) {
+      console.error("Erro ao deletar pedido:", error);
+    }
+  };
+
+  const actualizarStatus = async (id, novoStatus) => {
+    try {
+      await fetch(`http://127.0.0.1:8000/api/pedidos/${id}/`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ p_status: novoStatus }),
+      }); 
+      GetOrders();
+    } catch (error) {
+      console.error("Erro ao atualizar status:", error);
+    }
   };
 
   return (
-    <div className="p-6 max-w-3xl mx-auto">
-      <NavBar/>
-      <GeradorPedido onCriar={async (pedido) => {
-        await fetch("http://localhost:8000/pedidos", {
-          method: "POST",
-          headers: {"Content-Type": "application/json"},
-          body: JSON.stringify(pedido),
-        });
-        buscarPedidos()
-      }} />
-      {/* Barra de Navagecao */}
-      <div className="fixed bottom-4 right-4 flex flex-col items-end gap-3 z-50">
-        <a href="#pendentes" className="flex items-center gap-2 text-white hover:text-red-600"><strong>📦 Pendentes</strong></a>
-        <a href="#enviados" className="flex items-center gap-2 text-white hover:text-yellow-500"><strong>🚚 Enviados</strong></a>
-        <a href="#entregues" className="flex items-center gap-2 text-white hover:text-green-500"><strong>✅ Entregues</strong></a>
-      </div>
-      <h1 className="text-center text-2xl font-bold mb-4">Painel de Logística e Entregas</h1>
-      {/* Pedidos Pendentes */}
-      <h2 id="pendentes" className="text-xl font-semibold mb-2">📦 Pedidos Pendentes</h2>
-      <ul className="mb-6 border rounded-4x">
-        {pedidos
-          .filter((p) => p.status === "pendente")
-          .map((p) => (
-            <PedidoCard
-              key={p.id}
-              pedido={p}
-              atualizarStatus={atualizarStatus}
-              deletarPedido={deletarPedido}
-            />
-          ))}
-      </ul>
-      {/* Pedidos Enviados */}
-      <h2 id="enviados" className="text-xl font-semibold mb-2">🚚 Pedidos Enviados</h2>
-      <ul className="border rounded">
-        {pedidos
-          .filter((p) => p.status === "enviado")
-          .map((p) => (
-            <PedidoCard
-              key={p.id}
-              pedido={p}
-              atualizarStatus={atualizarStatus}
-              deletarPedido={deletarPedido}
-            />
-          ))}
-      </ul>
-      {/* Pedidos Entregues */}
-      <h2 id="entregues" className="text-xl font-semibold mb-2">✔️ Pedidos Entregue</h2>
-      <ul className="border rounded">
-        {pedidos
-          .filter((p) => p.status === "entregue")
-          .map((p) => (
-            <PedidoCard
-              key={p.id}
-              pedido={p}
-              atualizarStatus={atualizarStatus}
-              deletarPedido={deletarPedido}
-            />
-          ))}
-      </ul>
+    <div className="min-h-screen bg-gray-950 text-gray-100 antialiased selection:bg-blue-500 selection:text-white">
+      <NavBar />
+      
+      <main className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between border-b border-gray-800 pb-6 mb-8 gap-4">
+          <div>
+            <h1 className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
+              Painel de Logística e Entregas
+            </h1>
+            <p className="text-sm text-gray-400 mt-1">Gerencie fluxos, despache cargas e monitore o status em tempo real.</p>
+          </div>
+          <div className="flex items-center gap-3">
+            <GenerateNewOrder onCriar={GenerateNewOrderForBD} />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+          
+          <div className="bg-gray-900/40 rounded-2xl p-4 border border-gray-800/60 backdrop-blur-sm">
+            <div className="flex items-center justify-between mb-4 px-1">
+              <h2 className="text-base font-bold text-amber-400 flex items-center gap-2">
+                <span>📦</span> Pedidos Pendentes
+              </h2>
+              <span className="bg-amber-400/10 text-amber-400 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-amber-400/20">
+                {pedidos.filter((p) => p.p_status?.toLowerCase() === "pendente").length}
+              </span>
+            </div>
+            <ul className="flex flex-col gap-4 max-h-[calc(100vh-250px)] overflow-y-auto pr-1 custom-scrollbar">
+              {pedidos
+                .filter((p) => p.p_status?.toLowerCase() === "pendente")
+                .map((p) => (
+                  <OrderCard key={p.id} order={p} atualizarStatus={actualizarStatus} OrderDelete={OrderDelete} />
+                ))}
+            </ul>
+          </div>
+
+          <div className="bg-gray-900/40 rounded-2xl p-4 border border-gray-800/60 backdrop-blur-sm">
+            <div className="flex items-center justify-between mb-4 px-1">
+              <h2 className="text-base font-bold text-blue-400 flex items-center gap-2">
+                <span>🚚</span> Pedidos Enviados
+              </h2>
+              <span className="bg-blue-400/10 text-blue-400 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-blue-400/20">
+                {pedidos.filter((p) => p.p_status?.toLowerCase() === "enviado").length}
+              </span>
+            </div>
+            <ul className="flex flex-col gap-4 max-h-[calc(100vh-250px)] overflow-y-auto pr-1 custom-scrollbar">
+              {pedidos
+                .filter((p) => p.p_status?.toLowerCase() === "enviado")
+                .map((p) => (
+                  <OrderCard key={p.id} order={p} atualizarStatus={actualizarStatus} OrderDelete={OrderDelete} />
+                ))}
+            </ul>
+          </div>
+
+          <div className="bg-gray-900/40 rounded-2xl p-4 border border-gray-800/60 backdrop-blur-sm">
+            <div className="flex items-center justify-between mb-4 px-1">
+              <h2 className="text-base font-bold text-green-400 flex items-center gap-2">
+                <span>✅</span> Pedidos Entregues
+              </h2>
+              <span className="bg-green-400/10 text-green-400 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-green-400/20">
+                {pedidos.filter((p) => p.p_status?.toLowerCase() === "entregue").length}
+              </span>
+            </div>
+            <ul className="flex flex-col gap-4 max-h-[calc(100vh-250px)] overflow-y-auto pr-1 custom-scrollbar">
+              {pedidos
+                .filter((p) => p.p_status?.toLowerCase() === "entregue")
+                .map((p) => (
+                  <OrderCard key={p.id} order={p} atualizarStatus={actualizarStatus} OrderDelete={OrderDelete} />
+                ))}
+            </ul>
+          </div>
+
+        </div>
+      </main>
     </div>
   );
 }
