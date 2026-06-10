@@ -49,6 +49,19 @@ nano .env  # edit with your settings
 docker compose up --build
 ```
 ---
+### 🌐 Access URLs
+
+After starting the containers with `docker compose up`, you can access the application through the following URLs:
+
+| Feature | URL |
+| :--- | :--- |
+| **Logistics** | `http://localhost:3000/logistica` |
+| **Dashboard** | `http://localhost:3000/dashboard` |
+| **API (Orders)** | `http://127.0.0.1:8000/api/pedidos/` |
+
+> **Note:** Ensure that your Docker containers are running before trying to access these links.
+
+---
 
 ### 🇧🇷 Versão em Português
 
@@ -111,5 +124,17 @@ docker compose up --build
 
 Acesse em http://localhost:3000
 ```
+---
+### 🌐 Rotas de Acesso
+
+Após subir os containers com `docker compose up`, você pode acessar a aplicação através das seguintes URLs:
+
+| Funcionalidade | URL |
+| :--- | :--- |
+| **Logística** | `http://localhost:3000/logistica` |
+| **Dashboard** | `http://localhost:3000/dashboard` |
+| **API (Pedidos)** | `http://127.0.0.1:8000/api/pedidos/` |
+
+> **Nota:** Certifique-se de que os containers Docker estejam em execução antes de tentar acessar estes links.
 
 
