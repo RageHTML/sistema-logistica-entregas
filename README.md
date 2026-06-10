@@ -1,151 +1,115 @@
-# 📦 Sistema de Logística e Entregas
+# SLE - Sistema de Logística de Entrega 🚀
 
-Este projeto é uma aplicação web completa para gerenciamento de pedidos logísticos, composta por:
-
-- **Backend** em [FastAPI](https://fastapi.tiangolo.com/) com banco de dados **SQLite**
-- **Frontend** em [React](https://reactjs.org/) com [TailwindCSS](https://tailwindcss.com/)
-- **Dashboard** com gráficos utilizando [Recharts](https://recharts.org/)
-
----
-## 📝 Changelog
-
-Veja todas as alterações feitas no projeto:
-
-➡️ [CHANGELOG.md](./CHANGELOG.md)
-
-## ✨ Funcionalidades
-
-- Novo gerador de pedidos 
-- Atualizar status dos pedidos: (icones 📦,🚚,✔️)
-  - `pendente` → `enviado` → `entregue`
-- Obter todos os pedidos
-- Filtrar pedidos por status em abas separadas
-- Remover pedidos (ícone de lixeira)
-- Visualizar estatísticas em um **painel de dashboard**
-- Interface visual limpa e intuitiva
+The **SLE (Logistics Delivery System)** is a centralized platform for managing logistics flows. The system enables the registration and tracking of corporate orders, ensuring full visibility of delivery statuses from origin to final destination through an intuitive interface and BI-focused dashboards.
 
 ---
 
-## 📁 Estrutura de Pastas
+## 📸 System Demonstration
 
-```
-/backend
-  └── main.py
-  └── pedidos.db
-/frontend
-  └── src/
-      └── components/
-          └── GerarPedidos.jsx
-          └── NavBar.js
-          └── PedidoCard.jsx
-          └── StatusButtons.jsx
-      └── pages/
-          └── logistica.js
-          └── dashboard.js
-```
+### 🚛 Logistics Page (Operational)
+On this page, you can view the list of all orders, filter by status (Pending, In Transit, Delivered), and access order details including Order ID, Customer ID, and Product ID.
+
+<p align="center">
+  <img src="assets/demo-logistica.gif" alt="Logistics Page Demo" width="800">
+</p>
 
 ---
 
-## 🚀 Instalação
+### 📊 Dashboard Page (BI & Analytics)
+On this page, administrators have access to professional dashboards built with **Recharts**. View real-time performance metrics, bar charts on delivery volume, and pie charts for status distribution, enabling data-driven strategic decisions.
 
-### Backend (FastAPI)
-
-1. Acesse a pasta do backend:
-
-```bash
-cd backend
-```
-
-2. Crie e ative um ambiente virtual (opcional):
-
-```bash
-python -m venv venv
-source venv/bin/activate  # Linux/macOS
-venv\Scripts\activate     # Windows
-```
-
-3. Instale as dependências:
-
-```bash
-pip install fastapi uvicorn sqlalchemy
-```
-
-4. Inicie o servidor:
-
-```bash
-uvicorn main:app --reload
-```
-
-- Acesse: [http://localhost:8000](http://localhost:8000)
-- Documentação automática: [http://localhost:8000/docs](http://localhost:8000/docs)
+<p align="center">
+  <img src="assets/demo-dashboard.gif" alt="Dashboard Demo" width="800">
+</p>
 
 ---
 
-### Frontend (React + Tailwind)
+## 🛠 Tech Stack
 
-1. Acesse a pasta do frontend:
-
-```bash
-cd frontend
-```
-
-2. Instale as dependências:
-
-```bash
-npm install
-```
-
-3. Inicie o frontend:
-
-```bash
-npm run dev
-```
-
-- Acesse: [http://localhost:5173](http://localhost:5173) (ou a porta exibida)
+- **Frontend:** Next.js (React) with TailwindCSS.
+- **Backend:** Django (Python).
+- **Visualization:** Recharts.
+- **Data:** Integrated Fake API for dynamic simulation.
 
 ---
 
-## 📊 Dashboard
+### 🐳 How to run with Docker
 
-A aba de **Dashboard** exibe gráficos gerados com base nos dados da base de pedidos (`status`, `quantidade`, `hora`, etc), permitindo uma visão gerencial dos pedidos.
+```bash
+# 1. Clone the repository
+git clone https://github.com/seu-usuario/sistema-logistica-entregas.git
+cd sistema-logistica-entregas
+
+# 2. Set up environment
+cp .env.example .env
+cp .env.example backend/.env
+nano .env  # edit with your settings
+
+# 3. Start the containers
+docker compose up --build
+```
+
+### 🇧🇷 Versão em Português
+
+```markdown
+# SLE - Sistema de Logística de Entrega 🚀
+
+O **SLE (Sistema de Logística de Entrega)** é uma plataforma centralizada para o gerenciamento de fluxos logísticos. O sistema permite o registro e acompanhamento de pedidos de empresas, garantindo visibilidade total sobre o status das entregas, desde a origem até o destino final, através de uma interface intuitiva e dashboards focados em métricas de negócio.
 
 ---
 
-## 💡 Futuras Melhorias
+## 📸 Demonstração do Sistema
 
-- Dashboard mais Profissional
-- Paginação e busca por pedidos
-- Integração com APIs externas (ex: Mercado Livre)
-- Exportar relatórios em PDF/CSV
-- Notificações em tempo real (WebSocket)
-- Confirmar Envio de Pedidos e Entregas
+### 🚛 Página de Logística (Operacional)
+Nesta página, você pode visualizar a listagem de todos os pedidos, filtrar por status (Pendente, Em Trânsito, Entregue) e acessar os detalhes de cada entrega, incluindo ID do pedido, cliente e produto.
+
+<p align="center">
+  <img src="assets/demo-logistica.gif" alt="Página de Logística" width="800">
+</p>
+
+---
+
+### 📊 Página de Dashboard (BI & Analítico)
+Nesta página, os administradores têm acesso a dashboards profissionais construídos com **Recharts**. Visualize métricas de desempenho em tempo real, gráficos de barras sobre o volume de entregas e gráficos de pizza para distribuição de status.
+
+<p align="center">
+  <img src="assets/demo-dashboard.gif" alt="Dashboard com Recharts" width="800">
+</p>
 
 ---
 
 ## 🛠 Tecnologias Utilizadas
 
-- [FastAPI](https://fastapi.tiangolo.com/)
-- [SQLite](https://www.sqlite.org/)
-- [SQLAlchemy](https://www.sqlalchemy.org/)
-- [React.js](https://reactjs.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Recharts](https://recharts.org/)
-- [Faker](https://v9.fakerjs.dev/)
-
-
-## 👤 Autor
-
-Desenvolvido por **[Deyvid Martins]**
-
-[![GitHub](https://img.shields.io/badge/GitHub-Perfil-black?logo=github)](https://github.com/RageHTML)
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-blue?logo=linkedin)](https://www.linkedin.com/in/deyvid-martins-545530352/)
+- **Frontend:** Next.js (React) com TailwindCSS.
+- **Backend:** Django (Python).
+- **Visualização:** Recharts.
+- **Dados:** API Fake integrada para simulação dinâmica.
 
 ---
 
-## 📄 Licença
+### 🐳 Como rodar com Docker
 
-Este projeto está licenciado sob a **MIT License**.  
-Sinta-se livre para usar, modificar e distribuir.
+```bash
+#### Pré-requisitos
+- [Docker](https://docs.docker.com/get-docker/) instalado na máquina
 
----
+#### Passos
+
+# 1. Clone o repositório
+git clone https://github.com/seu-usuario/sistema-logistica-entregas.git
+cd sistema-logistica-entregas
+
+# 2. Configure o ambiente (copie o arquivo de exemplo)
+cp .env.example .env
+cp .env.example backend/.env
+
+# 3. Edite o .env com suas configurações
+nano .env
+
+# 4. Suba os containers (o docker-compose.yml já está configurado)
+docker compose up --build
+
+Acesse em http://localhost:3000
+```
+
+
