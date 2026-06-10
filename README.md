@@ -52,7 +52,6 @@ docker compose up --build
 
 ### 🇧🇷 Versão em Português
 
-```markdown
 # SLE - Sistema de Logística de Entrega 🚀
 
 O **SLE (Sistema de Logística de Entrega)** é uma plataforma centralizada para o gerenciamento de fluxos logísticos. O sistema permite o registro e acompanhamento de pedidos de empresas, garantindo visibilidade total sobre o status das entregas, desde a origem até o destino final, através de uma interface intuitiva e dashboards focados em métricas de negócio.
