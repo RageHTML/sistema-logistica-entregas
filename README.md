@@ -48,6 +48,7 @@ nano .env  # edit with your settings
 # 3. Start the containers
 docker compose up --build
 ```
+---
 
 ### 🇧🇷 Versão em Português
 
